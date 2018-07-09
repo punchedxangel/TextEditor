@@ -55,13 +55,13 @@ namespace TextEditor
         {
             if (!lineNumbersToolStripMenuItem.Checked)
             {
-                LineNumberTextBox.ResetText();  
+                LineNumberTextBox.ResetText();
             }
         }
 
         private void LineNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -116,7 +116,7 @@ namespace TextEditor
 
         private void defaultSaveLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -147,6 +147,20 @@ namespace TextEditor
             colorDialog.ShowDialog();
             richTextBox1.ForeColor = colorDialog.Color;
         }
+
+        private void fontToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog = new FontDialog();
+            fontDialog.ShowDialog();
+            if (fontDialog.ShowDialog().Equals(DialogResult.Cancel))
+            {
+                fontDialog.Dispose();
+            }
+            else
+            {
+                richTextBox1.Font = fontDialog.Font;
+            }
+        }
     }
-    }
+}
 

@@ -8,25 +8,42 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TextEditor
 {
     public partial class Form1 : Form
     {
+        public static string InitDirectory;
         public Form1()
         {
             InitializeComponent();
         }
-        private void UpdateLineCount()
+        public void UpdateLineCount()
         {
             if (lineNumbersToolStripMenuItem.Checked && richTextBox1.Lines.Length >= LineNumberTextBox.Lines.Length)
             {
-                for (int i = LineNumberTextBox.Lines.Length; i <= richTextBox1.Lines.Length; i++)
+                LineNumberTextBox.Text = "0";
+                for (int i = LineNumberTextBox.Lines.Length; i <= richTextBox1.Lines.Length - 1; i++)
                 {
-                    LineNumberTextBox.Text += i + 1 + "\n";
-                }
+                    LineNumberTextBox.Text += "\n" + i;
+                } 
             }
-
+            //if (richTextBox1.Lines.Length < LineNumberTextBox.Lines.Length)
+            //{
+                //int x = LineNumberTextBox.Lines.Length;
+                //foreach (string Line in LineNumberTextBox.Lines)
+                //{
+                    //if (Convert.ToInt32(Line) > richTextBox1.Lines.Length)
+                    //{
+                       // x--;
+                       // List<String> list = LineNumberTextBox.Lines.ToList();
+                       //list.RemoveAt(x);
+                       // string[] LineNumberTextBoxLines = list.ToArray();
+                    //};
+                    
+                //}
+            //}
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -57,6 +74,10 @@ namespace TextEditor
             {
                 LineNumberTextBox.ResetText();
             }
+            else
+            {
+                UpdateLineCount();
+            }
         }
 
         private void LineNumberTextBox_TextChanged(object sender, EventArgs e)
@@ -82,7 +103,7 @@ namespace TextEditor
         {
 
         }
-
+        
         private void saveAsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog
@@ -91,6 +112,7 @@ namespace TextEditor
                 FilterIndex = 1,
                 RestoreDirectory = true,
                 OverwritePrompt = true,
+                InitialDirectory = InitDirectory
             };
 
             if (saveFileDialog.ShowDialog().Equals(DialogResult.Cancel))
@@ -116,7 +138,16 @@ namespace TextEditor
 
         private void defaultSaveLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowDialog();
+            if (folderBrowserDialog.ShowDialog().Equals(DialogResult.Cancel))
+            {
+                folderBrowserDialog.Dispose();
+            }
+            else
+            {
+                InitDirectory = folderBrowserDialog.SelectedPath;
+            }
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,6 +190,7 @@ namespace TextEditor
             else
             {
                 richTextBox1.Font = fontDialog.Font;
+                LineNumberTextBox.Font = richTextBox1.Font;
             }
         }
     }

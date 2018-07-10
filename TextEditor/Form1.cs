@@ -182,7 +182,6 @@ namespace TextEditor
         private void fontToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontDialog fontDialog = new FontDialog();
-            fontDialog.ShowDialog();
             if (fontDialog.ShowDialog().Equals(DialogResult.Cancel))
             {
                 fontDialog.Dispose();

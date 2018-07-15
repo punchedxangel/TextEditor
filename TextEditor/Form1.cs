@@ -158,6 +158,7 @@ namespace TextEditor
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string topaste = Clipboard.GetText();
+            richTextBox1.Text += topaste;
         }
 
         private void backGroundToolStripMenuItem_Click(object sender, EventArgs e)

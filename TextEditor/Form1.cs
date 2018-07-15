@@ -14,12 +14,12 @@ namespace TextEditor
 {
     public partial class Form1 : Form
     {
-        public static string InitDirectory;
+        private static string InitDirectory;
         public Form1()
         {
             InitializeComponent();
         }
-        public void UpdateLineCount()
+        private void UpdateLineCount()
         {
             if (lineNumbersToolStripMenuItem.Checked && richTextBox1.Lines.Length >= LineNumberTextBox.Lines.Length)
             {
@@ -27,7 +27,14 @@ namespace TextEditor
                 for (int i = LineNumberTextBox.Lines.Length; i <= richTextBox1.Lines.Length - 1; i++)
                 {
                     LineNumberTextBox.Text += "\n" + i;
-                } 
+                }
+            }
+            else if (richTextBox1.Lines.Length < LineNumberTextBox.Lines.Length)
+            {
+                for (int i = LineNumberTextBox.Lines.Length ; i == richTextBox1.Lines.Length; i--)
+                {
+                    richTextBox1.Text = "";
+                }
             }
             //if (richTextBox1.Lines.Length < LineNumberTextBox.Lines.Length)
             //{
@@ -50,6 +57,7 @@ namespace TextEditor
         {
             richTextBox1.Select();
             UpdateLineCount();
+            LineNumberTextBox.MaximumSize = richTextBox1.Size;
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -88,6 +96,8 @@ namespace TextEditor
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             UpdateLineCount();
+            LineNumberTextBox.SelectionStart = richTextBox1.Text.Length;
+            LineNumberTextBox.ScrollToCaret();
         }
 
         private void richTextBox1_Resize(object sender, EventArgs e)
@@ -192,6 +202,10 @@ namespace TextEditor
                 richTextBox1.Font = fontDialog.Font;
                 LineNumberTextBox.Font = richTextBox1.Font;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

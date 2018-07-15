@@ -59,7 +59,9 @@
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.DetectUrls = false;
             this.richTextBox1.Location = new System.Drawing.Point(35, 32);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBox1.Name = "richTextBox1";
@@ -245,7 +247,8 @@
             this.LineNumberTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.LineNumberTextBox.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.LineNumberTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.LineNumberTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LineNumberTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.LineNumberTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
             this.LineNumberTextBox.Location = new System.Drawing.Point(12, 31);
@@ -303,9 +306,9 @@
         private System.Windows.Forms.ToolStripMenuItem defaultSaveLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lineNumbersToolStripMenuItem;
-        private System.Windows.Forms.RichTextBox LineNumberTextBox;
         private System.Windows.Forms.ToolStripMenuItem backGroundToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lettersToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox LineNumberTextBox;
     }
 }
 
